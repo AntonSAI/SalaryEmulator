@@ -1,5 +1,7 @@
 package salaryemulator.service.position_service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import salaryemulator.data.Company;
 import salaryemulator.model.position.Position;
 import salaryemulator.model.position.PositionCategory;
@@ -8,7 +10,9 @@ import salaryemulator.service.position_service.PositionService;
 import java.util.Iterator;
 import java.util.Optional;
 
+@Component
 public class PositionServiceImpl  implements PositionService {
+    @Autowired
     private Company company;
 
     @Override

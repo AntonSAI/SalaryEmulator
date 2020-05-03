@@ -1,10 +1,12 @@
 package salaryemulator.model.currency;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class CurrencyAmount {
     private BigDecimal value;
     private Currency currency;
+
 
     public CurrencyAmount() {
     }
@@ -31,10 +33,21 @@ public class CurrencyAmount {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CurrencyAmount currencyAmount = (CurrencyAmount) o;
+        return value.equals(currencyAmount.value) &&
+                currency == currencyAmount.currency;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, currency);
+    }
+
+    @Override
     public String toString() {
-        return "CurrencyAmount{" +
-                "value=" + value +
-                ", currency=" + currency +
-                '}';
+        return super.toString() + "-" + value.toString() + currency.name();
     }
 }

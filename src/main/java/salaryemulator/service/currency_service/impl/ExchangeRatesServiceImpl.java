@@ -1,11 +1,15 @@
 package salaryemulator.service.currency_service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import salaryemulator.data.CurrencyExchangeRatesGenerator;
 import salaryemulator.model.currency.Conversion;
 import salaryemulator.model.currency.Currency;
 import salaryemulator.service.currency_service.ExchangeRatesService;
 
+@Component
 public class ExchangeRatesServiceImpl implements ExchangeRatesService {
+    @Autowired
     private CurrencyExchangeRatesGenerator exchangeRatesGenerator;
 
     @Override

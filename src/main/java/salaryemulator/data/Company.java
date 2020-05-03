@@ -1,13 +1,22 @@
 package salaryemulator.data;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import salaryemulator.model.employee.Employee;
 import salaryemulator.model.position.Position;
+import salaryemulator.util.Printer;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Company {
+    @Value("${company.name}")
     private String name;
+    private Printer printer;
     private List<Employee> employees = new ArrayList<Employee>();
     private List<Position> positions = new ArrayList<Position>();
 
@@ -18,6 +27,16 @@ public class Company {
         this.name = name;
         this.employees = employees;
         this.positions = positions;
+    }
+
+    @PostConstruct
+    public void myPostConstruct() {
+        System.out.println("Company: myPostConstruct()");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("Company: preDestroy()");
     }
 
     public String getName() {
@@ -59,6 +78,19 @@ public class Company {
     public void removePosition(Position position) {
         positions.remove(position);
     }
+
+    public Printer getPrinter() {
+        return printer;
+    }
+
+    public void setPrinter(Printer printer) {
+        this.printer = printer;
+    }
+
+    public void printCompanyTagline() {
+        getPrinter().printCompanyInfo();
+    }
+
     @Override
     public String toString() {
         return "Company{" +

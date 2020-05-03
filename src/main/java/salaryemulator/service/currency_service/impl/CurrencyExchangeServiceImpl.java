@@ -1,5 +1,7 @@
 package salaryemulator.service.currency_service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import salaryemulator.model.currency.Conversion;
 import salaryemulator.model.currency.Currency;
 import salaryemulator.model.currency.CurrencyAmount;
@@ -8,8 +10,10 @@ import salaryemulator.service.currency_service.ExchangeRatesService;
 
 import java.math.MathContext;
 
+@Component
 public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
     private static final int PRECISION = 2;
+    @Autowired
     private ExchangeRatesService exchangeRatesService;
 
     @Override

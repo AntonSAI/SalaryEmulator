@@ -7,38 +7,6 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="salaryemulator" />
-
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-
-    <bean id="company"
-          class="salaryemulator.data.Company">
-        <property name="name" value="MagicInc"/>
-    </bean>
-    <bean id="currencyExchangeService"
-          class="salaryemulator.service.currency_service.impl.CurrencyExchangeServiceImpl"
-          autowire="byType">
-    </bean>
-    <bean id="exchangeRatesService"
-          class="salaryemulator.service.currency_service.impl.ExchangeRatesServiceImpl"
-          autowire="byName">
-    </bean>
-    <bean id="employeeService"
-          class="salaryemulator.service.employee_service.impl.EmployeeServiceImpl"
-          autowire="constructor"/>
-    <bean id="positionService"
-          class="salaryemulator.service.position_service.impl.PositionServiceImpl"/>
-    <bean id="exchangeRatesGenerator"
-          class="salaryemulator.data.CurrencyExchangeRatesGenerator"/>
-    <bean id="salaryServce"
-          class="salaryemulator.service.salary_service.impl.SalaryServiceImpl">
-        <property name="currencyExchangeService" ref="currencyExchangeService"/>
-        <property name="salaryRegulations">
-            <list>
-                <ref bean="salaryRegulation"/>
-            </list>
-        </property>
-    </bean>
-    <bean id="salaryRegulation"
-          class="salaryemulator.service.salary_service.impl.SalaryRegulationImpl"/>
+    <context:component-scan base-package="salaryemulator"/>
+    <context:property-placeholder location="company.properties"/>
 </beans>
